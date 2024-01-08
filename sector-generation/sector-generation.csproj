@@ -8,4 +8,9 @@
         <AssemblyName>$(AssemblyName.Replace(' ', '_'))</AssemblyName>
     </PropertyGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.min.css.map" />
+    </ItemGroup>
+
 </Project>
