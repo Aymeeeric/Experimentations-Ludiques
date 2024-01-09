@@ -9,13 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<PackageReference Include="MediatR" Version="12.2.0" />
+	<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
 	<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.*-* " />
     <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.*-* " />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\Slices\Menu\" />
     <Folder Include="Components\Slices\MYZ\" />
+    <Folder Include="Components\Slices\MYZ\ZoneGeneration\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
