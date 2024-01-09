@@ -1,7 +1,43 @@
 ﻿@page "/MYZ/ZoneGeneration"
+<PageTitle>Aymeeeric.fr - Mutant: Year Zero - Génération de secteurs</PageTitle>
 
-<PageTitle>Home</PageTitle>
+<FluentStack Orientation="Orientation.Horizontal" Width="100%">
 
-<h1>Hello, world!</h1>
+    <FluentBodyContent>
+        
+        <h1>
+            Mutant: Year Zero - Génération de secteurs
+        </h1>
+        
+        <FluentGrid Spacing="3" Justify="JustifyContent.Center">
+            <FluentGridItem xs="12">
+                <div>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
+                    Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
+                    Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
+                </div>
+            </FluentGridItem>
+            <FluentGridItem xs="12">
+                <div style="margin: 0 2% 0 2%">
+                    <FluentSlider id="sliderNiveauMenace" label="Niveau de menace" Min="0" Max="12" Step="1" @bind-Value=threatLevel>
+                        <FluentSliderLabel Position="00"></FluentSliderLabel>
+                        <FluentSliderLabel Position="02"></FluentSliderLabel>
+                        <FluentSliderLabel Position="04">En marge de la Zone</FluentSliderLabel>
+                        <FluentSliderLabel Position="06"></FluentSliderLabel>
+                        <FluentSliderLabel Position="08">Centraux</FluentSliderLabel>
+                        <FluentSliderLabel Position="10">Anormalement dangereux</FluentSliderLabel>
+                        <FluentSliderLabel Position="12"></FluentSliderLabel>
+                    </FluentSlider>
+                    <p>Valeur choisie : @threatLevel</p>
+                </div>
+            </FluentGridItem>
+        </FluentGrid>
 
-Welcome to your new Fluent Blazor app.
+        
+    </FluentBodyContent>
+
+</FluentStack>
+
+@code {
+    int threatLevel = 4;
+}

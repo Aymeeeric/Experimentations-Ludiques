@@ -19,8 +19,4 @@
     <Folder Include="Components\Slices\MYZ\" />
     <Folder Include="Components\Slices\MYZ\ZoneGeneration\Queries\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="Components\Slices\MYZ\ZoneGeneration\SliceRoot.razor" />
-  </ItemGroup>
 </Project>
