@@ -15,29 +15,39 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
                     Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
                     Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
+                    Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
+                    Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
+                    Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
+                    Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
                 </div>
             </FluentGridItem>
-            <FluentGridItem xs="12">
-                <div style="margin: 0 2% 0 2%">
-                    <FluentSlider id="sliderNiveauMenace" label="Niveau de menace" Min="0" Max="12" Step="1" @bind-Value=threatLevel>
-                        <FluentSliderLabel Position="00"></FluentSliderLabel>
-                        <FluentSliderLabel Position="02"></FluentSliderLabel>
-                        <FluentSliderLabel Position="04">En marge de la Zone</FluentSliderLabel>
-                        <FluentSliderLabel Position="06"></FluentSliderLabel>
-                        <FluentSliderLabel Position="08">Centraux</FluentSliderLabel>
-                        <FluentSliderLabel Position="10">Anormalement dangereux</FluentSliderLabel>
-                        <FluentSliderLabel Position="12"></FluentSliderLabel>
-                    </FluentSlider>
-                    <p>Valeur choisie : @threatLevel</p>
-                </div>
+            <FluentGridItem xs="12" >
+               <FluentStack Orientation="Orientation.Vertical">
+                    <FluentNumberField Min="1" Max="10" Label="Nombre de secteurs" @bind-Value=numberOfSectorsToGenerate></FluentNumberField>
+                    <FluentNumberField Min="0" Max="12" Label="Niveau de menace" @bind-Value=threatLevel></FluentNumberField>
+                    <FluentRadioGroup Name="numbers" @bind-Value=randomMode Label="Génération des environnemets">
+                        <FluentRadio Value=GenerationMode.Perlin>Cohérente</FluentRadio>
+                        <FluentRadio Value=GenerationMode.Random>Aléatoire</FluentRadio>
+                    </FluentRadioGroup>
+                </FluentStack>
             </FluentGridItem>
         </FluentGrid>
 
+            
         
     </FluentBodyContent>
 
 </FluentStack>
 
 @code {
+    enum GenerationMode
+    {
+        Perlin,
+        Random
+    }
+    int numberOfSectorsToGenerate = 5;
     int threatLevel = 4;
+    GenerationMode randomMode = GenerationMode.Perlin;
 }
