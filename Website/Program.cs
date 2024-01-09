@@ -1,5 +1,5 @@
+using Aymeeeric.Website.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
-using zone_generation.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
