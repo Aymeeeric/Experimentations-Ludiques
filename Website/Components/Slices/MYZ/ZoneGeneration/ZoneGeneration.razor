@@ -1,30 +1,31 @@
 ﻿@page "/MYZ/ZoneGeneration"
 <PageTitle>Aymeeeric.fr - Mutant: Year Zero - Génération de secteurs</PageTitle>
 
-<FluentStack Orientation="Orientation.Horizontal" Width="100%">
 
-    <FluentBodyContent>
-        
-        <h1>
-            Mutant: Year Zero - Génération de secteurs
-        </h1>
-        
-        <FluentGrid Spacing="3" Justify="JustifyContent.Center">
+<FluentBodyContent>
+    
+    <h1>
+        Mutant: Year Zero - Génération de secteurs
+    </h1>
+    
+    <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
+        Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
+        Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
+        Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
+        Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
+        Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
+        Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
+    </div>
+    
+    <FluentGrid Orientation="Orientation.Vertical" Width="100%" VerticalGap="50">
+
+        <!-- Formulaire -->
+        <FluentGrid Spacing="2" Justify="JustifyContent.Center">
             <FluentGridItem xs="12">
-                <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
-                    Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
-                    Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
-                    Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
-                    Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
-                    Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
-                    Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
-                </div>
-            </FluentGridItem>
-            <FluentGridItem xs="12" >
-               <FluentStack Orientation="Orientation.Vertical">
+                <FluentStack Orientation="Orientation.Vertical">
                     <FluentNumberField Min="1" Max="10" Label="Nombre de secteurs" @bind-Value=numberOfSectorsToGenerate></FluentNumberField>
                     <FluentNumberField Min="0" Max="12" Label="Niveau de menace" @bind-Value=threatLevel></FluentNumberField>
                     <FluentRadioGroup Name="numbers" @bind-Value=randomMode Label="Génération des environnemets">
@@ -35,11 +36,48 @@
             </FluentGridItem>
         </FluentGrid>
 
-            
+        <!-- Résultat -->
+        <FluentGrid Spacing="2" Justify="JustifyContent.SpaceEvenly">
+            <FluentGridItem xs="5">
+                <FluentCard AreaRestricted="false">
+                    
+                    <!-- Titre (Environnement et jour / nuit) -->
+                    <FluentHeader>
+                        <FluentGrid Spacing="2" Justify="JustifyContent.SpaceBetween">
+                            <FluentGridItem xs="8">Ruines croulantes</FluentGridItem>
+                            <FluentGridItem xs="3">Menace 3</FluentGridItem>
+                            <FluentGridItem xs="1">Jour</FluentGridItem>
+                        </FluentGrid>
+                    </FluentHeader>
+                    
+                    <!-- Ruines (si présentes) -->
+                    
+                    <!-- Niveau de gangrène -->
+                    
+                </FluentCard>
+            </FluentGridItem>
+            <FluentGridItem xs="5">
+                <FluentCard AreaRestricted="false">
+                    
+                    <!-- Titre (Environnement et jour / nuit) -->
+                    <FluentHeader>
+                        <FluentGrid Spacing="2" Justify="JustifyContent.SpaceBetween">
+                            <FluentGridItem xs="8">Ruines croulantes</FluentGridItem>
+                            <FluentGridItem xs="3">Menace 6</FluentGridItem>
+                            <FluentGridItem xs="1">Nuit</FluentGridItem>
+                        </FluentGrid>
+                    </FluentHeader>
+                    
+                    <!-- Ruines (si présentes) -->
+                    
+                    <!-- Niveau de gangrène -->
+                    
+                </FluentCard>
+            </FluentGridItem>
+        </FluentGrid>
         
-    </FluentBodyContent>
-
-</FluentStack>
+    </FluentGrid>
+</FluentBodyContent>
 
 @code {
     enum GenerationMode
