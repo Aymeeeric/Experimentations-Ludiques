@@ -20,7 +20,7 @@
         Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
     </div>
     
-    <FluentGrid Orientation="Orientation.Vertical" Width="100%" VerticalGap="50">
+    <FluentStack Orientation="Orientation.Vertical" Width="100%" VerticalGap="50" VerticalAlignment="VerticalAlignment.Center">
 
         <!-- Formulaire -->
         <FluentGrid Spacing="2" Justify="JustifyContent.Center">
@@ -37,46 +37,51 @@
         </FluentGrid>
 
         <!-- Résultat -->
-        <FluentGrid Spacing="2" Justify="JustifyContent.SpaceEvenly">
-            <FluentGridItem xs="5">
+        <FluentGrid Spacing="2" Justify="JustifyContent.Center">
+            
+            
+            <FluentGridItem xs="12" lg="8" xl="6">
                 <FluentCard AreaRestricted="false">
-                    
+
                     <!-- Titre (Environnement et jour / nuit) -->
                     <FluentHeader>
                         <FluentGrid Spacing="2" Justify="JustifyContent.SpaceBetween">
-                            <FluentGridItem xs="8">Ruines croulantes</FluentGridItem>
-                            <FluentGridItem xs="3">Menace 3</FluentGridItem>
-                            <FluentGridItem xs="1">Jour</FluentGridItem>
+                            <FluentGridItem xs="6" xl="8">Ruines croulantes</FluentGridItem>
+                            <FluentGridItem xs="2" xl="2">Menace 3</FluentGridItem>
+                            <FluentGridItem xs="4" xl="2" Style="background-color: coral">Gangrène 1</FluentGridItem>
                         </FluentGrid>
                     </FluentHeader>
-                    
+
                     <!-- Ruines (si présentes) -->
-                    
-                    <!-- Niveau de gangrène -->
-                    
+                    <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
+                        <FluentGridItem xs="10"><h4>Ruines</h4></FluentGridItem>
+                        <FluentGridItem xs="2">Oui</FluentGridItem>
+                        <FluentGridItem xs="10">
+                            <i>Station de radio (normale) :</i>
+                            une forêt d’antennes rouillées et de disques de métal surmonte le toit de ce vieux bâtiment. Un panneau sur la façade représente une antenne ceinte de quelques anneaux.
+                        </FluentGridItem>
+                    </FluentGrid>
+
+                    <!-- Ambiance (si présente) -->
+                    <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
+                        <FluentGridItem xs="10"><h4>Ambiance</h4></FluentGridItem>
+                        <FluentGridItem xs="2">Oui</FluentGridItem>
+                        <FluentGridItem xs="10">
+                            <i>Message :</i>
+                            quelqu’un a écrit quelque chose sur un mur. Quel est le message et est-il récent ?
+                        </FluentGridItem>
+                    </FluentGrid>
+
+                    <!-- Menace (si présente) -->
+
+                    <!-- Artefact et babioles (si présents) -->
+
                 </FluentCard>
             </FluentGridItem>
-            <FluentGridItem xs="5">
-                <FluentCard AreaRestricted="false">
-                    
-                    <!-- Titre (Environnement et jour / nuit) -->
-                    <FluentHeader>
-                        <FluentGrid Spacing="2" Justify="JustifyContent.SpaceBetween">
-                            <FluentGridItem xs="8">Ruines croulantes</FluentGridItem>
-                            <FluentGridItem xs="3">Menace 6</FluentGridItem>
-                            <FluentGridItem xs="1">Nuit</FluentGridItem>
-                        </FluentGrid>
-                    </FluentHeader>
-                    
-                    <!-- Ruines (si présentes) -->
-                    
-                    <!-- Niveau de gangrène -->
-                    
-                </FluentCard>
-            </FluentGridItem>
+            
         </FluentGrid>
         
-    </FluentGrid>
+    </FluentStack>
 </FluentBodyContent>
 
 @code {
