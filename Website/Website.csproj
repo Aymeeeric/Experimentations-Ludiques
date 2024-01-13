@@ -17,6 +17,6 @@
 
   <ItemGroup>
     <Folder Include="Components\Slices\MYZ\" />
-    <Folder Include="Components\Slices\MYZ\ZoneGeneration\Queries\" />
+    <Folder Include="Components\Slices\MYZ\SectorsGeneration\Data\" />
   </ItemGroup>
 </Project>

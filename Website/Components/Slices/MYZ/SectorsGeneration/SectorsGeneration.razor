@@ -1,0 +1,158 @@
+﻿@page "/MYZ/SectorsGeneration"
+@using MediatR;
+@using Aymeeeric.Website.Components.Slices.MYZ.SectorsGeneration.Queries
+
+@inject IMediator Mediator
+
+<PageTitle>Aymeeeric.fr - Mutant: Year Zero - Génération de secteurs</PageTitle>
+
+<FluentBodyContent>
+    
+    <h1>
+        Mutant: Year Zero - Génération de secteurs
+    </h1>
+    
+    <FluentStack Orientation="Orientation.Vertical" Width="100%" VerticalGap="50" VerticalAlignment="VerticalAlignment.Center">
+
+        <FluentGrid Spacing="2" Justify="JustifyContent.Center">
+            
+            <!-- Formulaire -->
+            <FluentGridItem xs="4" xl="2">
+                <FluentCard AreaRestricted="false">
+                    <FluentStack Orientation="Orientation.Vertical">
+                        <FluentNumberField Min="1" Max="10" Label="Nombre de secteurs" @bind-Value=_numberOfSectorsToGenerate></FluentNumberField>
+                        <FluentNumberField Min="0" Max="12" Label="Niveau de menace" @bind-Value=_threatLevel></FluentNumberField>
+                        <FluentRadioGroup Name="numbers" @bind-Value=_randomMode Label="Génération des environnemets">
+                            <FluentRadio Value=GenerationMode.Perlin Disabled="true">Cohérente</FluentRadio>
+                            <FluentRadio Value=GenerationMode.Random>Aléatoire</FluentRadio>
+                        </FluentRadioGroup>
+                        
+                            <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowClockwise())"
+                                          Appearance="Appearance.Accent"
+                                          Loading="@loading"
+                                          OnClick="@GenerateSectors">        
+                                Générer
+                            </FluentButton>
+                    </FluentStack>
+                </FluentCard>
+            </FluentGridItem>
+
+            <!-- Texte -->
+            <FluentGridItem xs="8" xl="10">
+                <div>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
+                    Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
+                    Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
+                    Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
+                    Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
+                </div>
+            </FluentGridItem>
+            
+        </FluentGrid>
+
+        <!-- Résultat -->
+        <FluentGrid Spacing="2" Justify="JustifyContent.Center">
+            
+            <FluentGridItem xs="12" lg="8" xl="6">
+                <FluentCard AreaRestricted="false">
+
+                    <!-- Titre (Environnement et jour / nuit) -->
+                    <FluentHeader>
+                        <FluentGrid Spacing="2" Justify="JustifyContent.SpaceBetween">
+                            <FluentGridItem xs="6" xl="8">Ruines croulantes</FluentGridItem>
+                            <FluentGridItem xs="2" xl="2">Menace 3</FluentGridItem>
+                            <FluentGridItem xs="4" xl="2" Style="background-color: yellow">Gangrène 1</FluentGridItem>
+                        </FluentGrid>
+                    </FluentHeader>
+
+                    <!-- Ruines (si présentes) -->
+                    <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
+                        <FluentGridItem xs="10"><h4>Ruines</h4></FluentGridItem>
+                        <FluentGridItem xs="2"><FluentBadge Appearance="Appearance.Accent">Oui</FluentBadge></FluentGridItem>
+                        <FluentGridItem xs="10">
+                            <i>Station de radio (normale) :</i>
+                            une forêt d’antennes rouillées et de disques de métal surmonte le toit de ce vieux bâtiment. Un panneau sur la façade représente une antenne ceinte de quelques anneaux.
+                        </FluentGridItem>
+                    </FluentGrid>
+
+                    <!-- Ambiance (si présente) -->
+                    <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
+                        <FluentGridItem xs="10"><h4>Ambiance</h4></FluentGridItem>
+                        <FluentGridItem xs="2"><FluentBadge Appearance="Appearance.Accent">Oui</FluentBadge></FluentGridItem>
+                        <FluentGridItem xs="10">
+                            <i>Message :</i>
+                            quelqu’un a écrit quelque chose sur un mur. Quel est le message et est-il récent ?
+                        </FluentGridItem>
+                    </FluentGrid>
+                    
+                    <FluentDivider Orientation="Orientation.Horizontal" Style="width: 80%; margin: 2% 0 2% 0"></FluentDivider>
+
+                    <!-- Menace (si présente) -->
+                    <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
+                        <FluentGridItem xs="10"><h4>Menace</h4></FluentGridItem>
+                        <FluentGridItem xs="2"><FluentBadge Appearance="Appearance.Accent">Oui</FluentBadge></FluentGridItem>
+                        <FluentGridItem xs="12">
+                            <FluentStack Orientation="Orientation.Horizontal">
+                                <span><i>Phénomène : </i> champ d'inertie</span> 
+                                <FluentBadge>P184</FluentBadge>
+                            </FluentStack>
+                        </FluentGridItem>
+                    </FluentGrid>
+                    
+                    <FluentDivider Orientation="Orientation.Horizontal" Style="width: 80%; margin: 2% 0 2% 0"></FluentDivider>
+
+                    <!-- Artefact et babioles (si présents) -->
+                    <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
+                        
+                        <FluentGridItem xs="10"><h4>Artefact</h4></FluentGridItem>
+                        <FluentGridItem xs="2"><FluentBadge Appearance="Appearance.Accent">Oui</FluentBadge></FluentGridItem>
+                        <FluentGridItem xs="12">
+                            <FluentStack Orientation="Orientation.Horizontal">
+                                <span>Flacon de parfum</span> 
+                                <FluentBadge>P193</FluentBadge>
+                            </FluentStack>
+                        </FluentGridItem>
+                        
+                        <FluentGridItem xs="12" Style="margin-top: 8px;">
+                            <span><i>Babioles :</i> Peigne, Bible...</span>
+                        </FluentGridItem>
+                    </FluentGrid>
+
+                </FluentCard>
+            </FluentGridItem>
+            
+        </FluentGrid>
+        
+    </FluentStack>
+</FluentBodyContent>
+
+@code {
+
+    #region Formulaire
+
+    GenerationMode _randomMode = GenerationMode.Random;
+    int _numberOfSectorsToGenerate = 5;
+    int _threatLevel = 4;
+    
+    
+    bool loading = false;
+
+    async Task GenerateSectors()
+    {
+        loading = true;
+
+        var generateSectorsQuery = new GenerateSectorsQuery(
+            _randomMode,
+            _numberOfSectorsToGenerate,
+            _threatLevel
+        );
+
+        var results = await Mediator.Send(generateSectorsQuery);
+    }
+
+    #endregion
+    
+
+}
