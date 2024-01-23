@@ -5,7 +5,8 @@
     "environmentName": "Forêt dense",
     "isRuinInEnvironment": false,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": false
+    "isArtifactInEnvironment": false,
+    "isColony" : false
   },
   {
     "d66Min": 13,
@@ -13,7 +14,8 @@
     "environmentName": "Brousse",
     "isRuinInEnvironment": false,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": false
+    "isArtifactInEnvironment": false,
+    "isColony" : false
   },
   {
     "d66Min": 16,
@@ -21,7 +23,8 @@
     "environmentName": "Marécages",
     "isRuinInEnvironment": false,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": false
+    "isArtifactInEnvironment": false,
+    "isColony" : false
   },
   {
     "d66Min": 22,
@@ -29,7 +32,8 @@
     "environmentName": "Forêt éteinte",
     "isRuinInEnvironment": false,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": false
+    "isArtifactInEnvironment": false,
+    "isColony" : false
   },
   {
     "d66Min": 25,
@@ -37,7 +41,8 @@
     "environmentName": "Désert de cendres",
     "isRuinInEnvironment": false,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": false
+    "isArtifactInEnvironment": false,
+    "isColony" : false
   },
   {
     "d66Min": 31,
@@ -45,7 +50,8 @@
     "environmentName": "Immense cratère",
     "isRuinInEnvironment": false,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": false
+    "isArtifactInEnvironment": false,
+    "isColony" : false
   },
   {
     "d66Min": 32,
@@ -53,7 +59,8 @@
     "environmentName": "Terre vitrifiée",
     "isRuinInEnvironment": false,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": false
+    "isArtifactInEnvironment": false,
+    "isColony" : false
   },
   {
     "d66Min": 33,
@@ -61,7 +68,8 @@
     "environmentName": "Ruines luxuriantes",
     "isRuinInEnvironment": true,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": true
+    "isArtifactInEnvironment": true,
+    "isColony" : false
   },
   {
     "d66Min": 36,
@@ -69,7 +77,8 @@
     "environmentName": "Ruines croulantes",
     "isRuinInEnvironment": true,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": true
+    "isArtifactInEnvironment": true,
+    "isColony" : false
   },
   {
     "d66Min": 43,
@@ -77,7 +86,8 @@
     "environmentName": "Ruines délabrées",
     "isRuinInEnvironment": true,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": true
+    "isArtifactInEnvironment": true,
+    "isColony" : false
   },
   {
     "d66Min": 52,
@@ -85,7 +95,8 @@
     "environmentName": "Ruines intactes",
     "isRuinInEnvironment": true,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": true
+    "isArtifactInEnvironment": true,
+    "isColony" : false
   },
   {
     "d66Min": 61,
@@ -93,7 +104,8 @@
     "environmentName": "Usines abandonnées",
     "isRuinInEnvironment": true,
     "isThreatInEnvironment": true,
-    "isArtifactInEnvironment": true
+    "isArtifactInEnvironment": true,
+    "isColony" : false
   },
   {
     "d66Min": 65,
@@ -101,6 +113,7 @@
     "environmentName": "Colonie*",
     "isRuinInEnvironment": false,
     "isThreatInEnvironment": false,
-    "isArtifactInEnvironment": false
+    "isArtifactInEnvironment": false,
+    "isColony" : true
   }
 ]

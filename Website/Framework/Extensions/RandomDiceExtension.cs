@@ -2,9 +2,15 @@
 
 public static class RandomDiceExtension
 {
+    public static int RollD3(this Random random)
+    {
+        var units = random.Next(1, 4); // Upper is exclusive...
+        return units;
+    }
+    
     public static int RollD6(this Random random)
     {
-        var units = random.Next(1, 6);
+        var units = random.Next(1, 7); // Upper is exclusive...
         return units;
     }
     

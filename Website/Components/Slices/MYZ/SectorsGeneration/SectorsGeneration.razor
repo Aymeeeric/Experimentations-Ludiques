@@ -112,12 +112,15 @@
                                         @BoolToString(sector.Threat.IsThreatInSector)
                                     </FluentBadge>
                                 </FluentGridItem>
-                                <FluentGridItem xs="12">
-                                    <FluentStack Orientation="Orientation.Horizontal">
-                                        <span><b>@sector.Threat.ThreatType :</b> @sector.Threat.ThreatName</span>
-                                        <FluentBadge>@($"P{sector.Threat.ThreatPage}")</FluentBadge>
-                                    </FluentStack>
-                                </FluentGridItem>
+                                @if (sector.Threat.IsThreatInSector)
+                                {
+                                    <FluentGridItem xs="12">
+                                        <FluentStack Orientation="Orientation.Horizontal">
+                                            <span><b>@sector.Threat.ThreatType :</b> @sector.Threat.ThreatName</span>
+                                            <FluentBadge>@($"P{sector.Threat.ThreatPage}")</FluentBadge>
+                                        </FluentStack>
+                                    </FluentGridItem>
+                                }
                             </FluentGrid>
 
                             <FluentDivider Orientation="Orientation.Horizontal" Style="width: 80%; margin: 2% 0 2% 0"></FluentDivider>
@@ -131,13 +134,16 @@
                                         @BoolToString(sector.Artifact.IsArtifactInSector)
                                     </FluentBadge>
                                 </FluentGridItem>
-                                <FluentGridItem xs="12">
-                                    <FluentStack Orientation="Orientation.Horizontal">
-                                        <span>@sector.Artifact.ArtifactName</span>
-                                        <FluentBadge>@($"P{sector.Artifact.ArtifactPage}")</FluentBadge>
-                                    </FluentStack>
-                                </FluentGridItem>
-                                
+                                @if (sector.Artifact.IsArtifactInSector)
+                                {
+                                    <FluentGridItem xs="12">
+                                        <FluentStack Orientation="Orientation.Horizontal">
+                                            <span>@sector.Artifact.ArtifactName</span>
+                                            <FluentBadge>@($"P{sector.Artifact.ArtifactPage}")</FluentBadge>
+                                        </FluentStack>
+                                    </FluentGridItem>
+                                }
+
                                 <FluentDivider Orientation="Orientation.Horizontal" Style="width: 20%; margin: 2% 0 2% 0"></FluentDivider>
 
                                 <FluentStack Orientation="Orientation.Horizontal">

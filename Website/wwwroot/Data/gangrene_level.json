@@ -1,0 +1,23 @@
+﻿[
+  {
+    "d66Min": 11,
+    "d66Max": 12,
+    "level": 0,
+    "levelTitle": "Oasis non gangrenée",
+    "levelDescription": "Ici, les PJ n’ont rien à craindre de la Gangrène."
+  },
+  {
+    "d66Min": 13,
+    "d66Max": 55,
+    "level": 1,
+    "levelTitle": "Gangrène faible",
+    "levelDescription": "Les PJ subissent un point de Gangrène par jour."
+  },
+  {
+    "d66Min": 56,
+    "d66Max": 66,
+    "level": 2,
+    "levelTitle": "Gangrène forte",
+    "levelDescription": "Les PJ subissent un point de Gangrène par heure."
+  }
+]
