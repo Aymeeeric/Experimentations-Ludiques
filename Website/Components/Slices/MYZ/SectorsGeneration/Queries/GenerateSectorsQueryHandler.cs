@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Aymeeeric.Website.Components.Slices.MYZ.SectorsGeneration.Queries;
 
-public record GenerateSectorsQuery(GenerationMode GenerationMode, int NumberOfSectorsToGenerate, int ThreatLevel, string Seed = "Mutant: year Zero" ) : IRequest<List<Sector>>;
+public record GenerateSectorsQuery(GenerationMode GenerationMode, int NumberOfSectorsToGenerate, int ThreatLevel, string Seed) : IRequest<List<Sector>>;
 
 public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, List<Sector>>
 {
@@ -220,7 +220,7 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
     
     private Artifact RollArtifact()
     {
-        var roll = _random.RollD666();
+        var roll = _random.RollD666(642);
         return _tableArtifacts.Single(env =>
             env.D666Min <= roll &&
             env.D666Max >= roll);
@@ -259,15 +259,15 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
     {
         switch (level)
         {
-            case 1 :
+            case 0 :
                 return "yellow";
-            case 2 :
+            case 1 :
                 return "orange";
-            case 3 :
+            case 2 :
                 return "red";
             
             default:
-                throw new Exception("Le niveau de gangrène doit être compris entre 1 et 3.");
+                throw new Exception("Le niveau de gangrène doit être compris entre 0 et 2.");
         }
     }
     

@@ -27,7 +27,9 @@
                             <FluentRadio Value=GenerationMode.Random>Aléatoire</FluentRadio>
                         </FluentRadioGroup>
                         
-                            <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowClockwise())"
+                        <FluentTextField Label="Seed" @bind-value="_seed"></FluentTextField>
+                        
+                        <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowClockwise())"
                                           Appearance="Appearance.Accent"
                                           OnClick="@GenerateSectors">        
                                 Générer
@@ -167,14 +169,16 @@
     GenerationMode _randomMode = GenerationMode.Random;
     int _numberOfSectorsToGenerate = 5;
     int _threatLevel = 4;
-
+    string _seed = string.Empty; 
+    
     List<Sector> _sectors = new();
     async Task GenerateSectors()
     {
         var generateSectorsQuery = new GenerateSectorsQuery(
             _randomMode,
             _numberOfSectorsToGenerate,
-            _threatLevel
+            _threatLevel,
+            string.IsNullOrEmpty(_seed) ? DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss") : _seed
         );
 
         _sectors = await Mediator.Send(generateSectorsQuery);

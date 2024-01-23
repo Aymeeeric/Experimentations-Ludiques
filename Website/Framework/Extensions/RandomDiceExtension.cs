@@ -30,4 +30,18 @@ public static class RandomDiceExtension
         
         return int.Parse($"{hundreds}{tens}{units}");
     }
+    
+    public static int RollD666(this Random random, int max)
+    {
+        if (max < 1 || max > 666)
+            throw new Exception("Un dé 666 doit être compris entre 1 et 666.");
+            
+        var roll = random.RollD666();
+        while (roll > max)
+        {
+            roll = random.RollD666();
+        }
+
+        return roll;
+    }
 }
