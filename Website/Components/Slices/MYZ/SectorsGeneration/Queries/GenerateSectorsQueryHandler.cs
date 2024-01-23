@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.Text.Json;
+using MediatR;
 
 namespace Aymeeeric.Website.Components.Slices.MYZ.SectorsGeneration.Queries;
 
@@ -6,21 +7,28 @@ public record GenerateSectorsQuery(GenerationMode GenerationMode, int NumberOfSe
 
 public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, List<Sector>>
 {
+    private readonly IWebHostEnvironment _env;
+    
+    public GenerateSectorsQueryHandler(IWebHostEnvironment env)
+    {
+        _env = env;
+    }
+
+    
     private Random _random;
 
-    private List<Environnement> _tableEnvironnements;
-    private List<Ruine> _tableRuines;
-    private List<Ambiance> _tableAmbiances;
-    private List<Menace> _tableMenacesHumanoides;
-    private List<Menace> _tableMenacesMonstres;
-    private List<Menace> _tableMenacesPhenomenes;
-    private List<Artefact> _tableArtefacts;
-    private List<Babiole> _tableBabioles;
+    private List<Environment> _tableEnvironments;
+    private List<Ruin> _tableNormalRuins;
+    private List<Ruin> _tableIndustrialRuins;
+    private List<Atmosphere> _tableAtmospheres;
+    private List<Threat> _tableHumanoidThreat;
+    private List<Threat> _tableMonsterThreat;
+    private List<Threat> _tablePhenomenonThreat;
+    private List<Artifact> _tableArtifacts;
+    private List<Trinklet> _tableTrinklets;
     
     public async Task<List<Sector>> Handle(GenerateSectorsQuery query, CancellationToken cancellationToken)
     {
-        return GetMockedSectors();
-        
         var seed = query.Seed;
         var numberOfSectorsToGenerate = query.NumberOfSectorsToGenerate;
         var threatLevel = query.ThreatLevel;
@@ -32,7 +40,7 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
             throw new Exception("Le niveau de menace doit être compris entre 1 et 12.");
 
         SeedRandomisation(seed);
-        await LoadAllTables();
+        LoadAllTables();
 
         List<Sector> results = [];
         for (var i = 0; i < numberOfSectorsToGenerate; i++)
@@ -43,22 +51,41 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
 
         return results;
     }
-
-    private List<Sector> GetMockedSectors()
+    
+    private void SeedRandomisation(string seed)
     {
-        var title = new SectorTitle("Ruines croulantes", 3, 1, GetGangreneColor(1));
-        var ruin = new SectorRuin(true, "normale", "Station de radio",
-            "une forêt d’antennes rouillées et de disques de métal surmonte le toit de ce vieux bâtiment. Un panneau sur la façade représente une antenne ceinte de quelques anneaux.");
-        var atmosphere = new SectorAtmosphere(true, "Message",
-            "quelqu’un a écrit quelque chose sur un mur. Quel est le message et est-il récent ?");
-        var threat = new SectorThreat(true, "Phénomène", "champ d'inertie", 184);
-        var artifact = new SectorArtifact(true, "Flacon de parfum", 193);
-        var trinket = new SectorTrinket(["Peigne", "Bible"]);
-
-        var sector = new Sector(title, ruin, atmosphere, threat, artifact, trinket);
-        return [sector];
+        var intSeed = seed.GetHashCode();
+        _random = new Random(intSeed);
     }
 
+    private void LoadAllTables()
+    {
+        _tableArtifacts = ConvertJsonFile<Artifact>("Data\\artifacts.json");
+        _tableAtmospheres = ConvertJsonFile<Atmosphere>("Data\\atmospheres.json");
+        _tableEnvironments = ConvertJsonFile<Environment>("Data\\environments.json");
+        _tableIndustrialRuins = ConvertJsonFile<Ruin>("Data\\industrial_ruins.json");
+        _tableNormalRuins = ConvertJsonFile<Ruin>("Data\\normal_ruins.json");
+        
+        _tableHumanoidThreat = ConvertJsonFile<Threat>("Data\\humanoid_threat.json");
+        _tableMonsterThreat = ConvertJsonFile<Threat>("Data\\monster_threat.json");
+        _tablePhenomenonThreat = ConvertJsonFile<Threat>("Data\\phenomenon_threat.json");
+        
+        _tableTrinklets = ConvertJsonFile<Trinklet>("Data\\trinklets.json");
+    }
+
+    private List<T> ConvertJsonFile<T>(string jsonFile)
+    {
+        var fullJsonPath = Path.Combine(_env.WebRootPath, jsonFile);
+        var jsonContent = File.ReadAllText(fullJsonPath);
+        
+        return JsonSerializer.Deserialize<List<T>>(jsonContent, _jsonSerializerOptions)!;
+    }
+    
+    private readonly JsonSerializerOptions _jsonSerializerOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
+    
     private string GetGangreneColor(int level)
     {
         switch (level)
@@ -75,29 +102,7 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
         }
     }
 
-    private void SeedRandomisation(string seed)
-    {
-        var intSeed = seed.GetHashCode();
-        _random = new Random(intSeed);
-    }
 
-    private async Task LoadAllTables()
-    {
-        _tableEnvironnements = ConvertJsonFile<Environnement>("environnements.json");
-        _tableRuines = ConvertJsonFile<Ruine>("ruines.json");
-        _tableAmbiances = ConvertJsonFile<Ambiance>("ambiances.json");
-        _tableMenacesHumanoides = ConvertJsonFile<Menace>("menaceHumanoides.json");
-        _tableMenacesMonstres = ConvertJsonFile<Menace>("menacesMonstres.json");
-        _tableMenacesPhenomenes = ConvertJsonFile<Menace>("menacesPhenomenes.json");
-        _tableArtefacts = ConvertJsonFile<Artefact>("artefacts.json");
-        _tableBabioles = ConvertJsonFile<Babiole>("babioles.json");
-    }
-
-    private List<T> ConvertJsonFile<T>(string environnementsJson)
-    {
-        throw new NotImplementedException();
-    }
-    
     private Sector GenerateSector(int threatLevel)
     {
         throw new NotImplementedException();
@@ -109,9 +114,9 @@ public enum GenerationMode {
     Random
 }
 
-public record Environnement();
-public record Ruine();
-public record Ambiance();
-public record Menace();
-public record Artefact();
-public record Babiole();
+public record Environment(int D66Min, int D66Max, string EnvironmentName, bool IsRuinInEnvironment, bool IsThreatInEnvironment, bool IsArtifactInEnvironment);
+public record Ruin(int D66Min, int D66Max, string RuinName, string RuinDefinition);
+public record Atmosphere(int D66Min, int D66Max, string AtmosphereName, string AtmosphereDefinition);
+public record Threat();
+public record Artifact(int D666Min, int D666Max, string ArtifactName, string ArtifactPage);
+public record Trinklet(int D666Min, int D666Max, string TrinkletName);

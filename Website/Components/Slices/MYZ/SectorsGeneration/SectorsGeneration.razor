@@ -1,7 +1,6 @@
 ﻿@page "/MYZ/SectorsGeneration"
 @using MediatR;
 @using Aymeeeric.Website.Components.Slices.MYZ.SectorsGeneration.Queries
-@using System.Diagnostics
 
 @inject IMediator Mediator
 
@@ -82,7 +81,7 @@
                                 @if (sector.Ruin.IsRuinInSector)
                                 {
                                     <FluentGridItem xs="10">
-                                        <i>@sector.Ruin.RuinName (@sector.Ruin.RuinType) :</i> @sector.Ruin.RuinDefinition
+                                        <b>@sector.Ruin.RuinName (@sector.Ruin.RuinType) :</b> @sector.Ruin.RuinDefinition
                                     </FluentGridItem>
                                 }
                             </FluentGrid>
@@ -98,7 +97,7 @@
                                 @if (sector.Atmosphere.IsAtmosphereInSector)
                                 {
                                     <FluentGridItem xs="10">
-                                        <i>@sector.Atmosphere.AtmosphereName :</i> @sector.Atmosphere.AtmosphereDefinition
+                                        <b>@sector.Atmosphere.AtmosphereName :</b> @sector.Atmosphere.AtmosphereDefinition
                                     </FluentGridItem>
                                 }
                             </FluentGrid>
@@ -108,11 +107,15 @@
                             <!-- Menace (si présente) -->
                             <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
                                 <FluentGridItem xs="10"><h4>Menace</h4></FluentGridItem>
-                                <FluentGridItem xs="2"><FluentBadge Appearance="Appearance.Accent">Oui</FluentBadge></FluentGridItem>
+                                <FluentGridItem xs="2">
+                                    <FluentBadge Appearance="Appearance.Accent">
+                                        @BoolToString(sector.Threat.IsThreatInSector)
+                                    </FluentBadge>
+                                </FluentGridItem>
                                 <FluentGridItem xs="12">
                                     <FluentStack Orientation="Orientation.Horizontal">
-                                        <span><i>Phénomène : </i> champ d'inertie</span>
-                                        <FluentBadge>P184</FluentBadge>
+                                        <span><b>@sector.Threat.ThreatType :</b> @sector.Threat.ThreatName</span>
+                                        <FluentBadge>@($"P{sector.Threat.ThreatPage}")</FluentBadge>
                                     </FluentStack>
                                 </FluentGridItem>
                             </FluentGrid>
@@ -123,17 +126,25 @@
                             <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
 
                                 <FluentGridItem xs="10"><h4>Artefact</h4></FluentGridItem>
-                                <FluentGridItem xs="2"><FluentBadge Appearance="Appearance.Accent">Oui</FluentBadge></FluentGridItem>
+                                <FluentGridItem xs="2">
+                                    <FluentBadge Appearance="Appearance.Accent">
+                                        @BoolToString(sector.Artifact.IsArtifactInSector)
+                                    </FluentBadge>
+                                </FluentGridItem>
                                 <FluentGridItem xs="12">
                                     <FluentStack Orientation="Orientation.Horizontal">
-                                        <span>Flacon de parfum</span>
-                                        <FluentBadge>P193</FluentBadge>
+                                        <span>@sector.Artifact.ArtifactName</span>
+                                        <FluentBadge>@($"P{sector.Artifact.ArtifactPage}")</FluentBadge>
                                     </FluentStack>
                                 </FluentGridItem>
+                                
+                                <FluentDivider Orientation="Orientation.Horizontal" Style="width: 20%; margin: 2% 0 2% 0"></FluentDivider>
 
-                                <FluentGridItem xs="12" Style="margin-top: 8px;">
-                                    <span><i>Babioles :</i> Peigne, Bible...</span>
-                                </FluentGridItem>
+                                <FluentStack Orientation="Orientation.Horizontal">
+                                    <h5>Babioles :</h5>
+                                    <span>@string.Join(", ", sector.Trinket.TrinketsNames)...</span>
+                                </FluentStack>
+                                
                             </FluentGrid>
 
                         </FluentCard>

@@ -1,0 +1,17 @@
+﻿[
+  { "d66Min": 11, "d66Max": 12, "threatName": "Adorateurs de Nova", "threatPage": 171 },
+  { "d66Min": 13, "d66Max": 13, "threatName": "Amnésique", "threatPage": 172 },
+  { "d66Min": 14, "d66Max": 15, "threatName": "Animaux mutants", "threatPage": 172 },
+  { "d66Min": 16, "d66Max": 22, "threatName": "Cannibales", "threatPage": 173 },
+  { "d66Min": 23, "d66Max": 24, "threatName": "Disciples de l’Apocalypse", "threatPage": 173 },
+  { "d66Min": 25, "d66Max": 31, "threatName": "Expédition d’une autre Arche", "threatPage": 173 },
+  { "d66Min": 32, "d66Max": 35, "threatName": "Goules de la Zone", "threatPage": 173 },
+  { "d66Min": 36, "d66Max": 42, "threatName": "Helldrivers", "threatPage": 174 },
+  { "d66Min": 43, "d66Max": 45, "threatName": "Morlocks", "threatPage": 174 },
+  { "d66Min": 46, "d66Max": 52, "threatName": "Mutants exilés", "threatPage": 174 },
+  { "d66Min": 53, "d66Max": 54, "threatName": "Oracle du bric-à-brac", "threatPage": 174 },
+  { "d66Min": 55, "d66Max": 56, "threatName": "Patrouille de l’Arche", "threatPage": 175 },
+  { "d66Min": 61, "d66Max": 62, "threatName": "Piégeurs", "threatPage": 175 },
+  { "d66Min": 63, "d66Max": 64, "threatName": "Vagabonds", "threatPage": 175 },
+  { "d66Min": 65, "d66Max": 66, "threatName": "Vendeur d’eau", "threatPage": 176 }
+]

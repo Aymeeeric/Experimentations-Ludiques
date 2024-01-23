@@ -1,0 +1,106 @@
+﻿[
+  {
+    "d66Min": 11,
+    "d66Max": 12,
+    "environmentName": "Forêt dense",
+    "isRuinInEnvironment": false,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": false
+  },
+  {
+    "d66Min": 13,
+    "d66Max": 15,
+    "environmentName": "Brousse",
+    "isRuinInEnvironment": false,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": false
+  },
+  {
+    "d66Min": 16,
+    "d66Max": 21,
+    "environmentName": "Marécages",
+    "isRuinInEnvironment": false,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": false
+  },
+  {
+    "d66Min": 22,
+    "d66Max": 24,
+    "environmentName": "Forêt éteinte",
+    "isRuinInEnvironment": false,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": false
+  },
+  {
+    "d66Min": 25,
+    "d66Max": 26,
+    "environmentName": "Désert de cendres",
+    "isRuinInEnvironment": false,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": false
+  },
+  {
+    "d66Min": 31,
+    "d66Max": 31,
+    "environmentName": "Immense cratère",
+    "isRuinInEnvironment": false,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": false
+  },
+  {
+    "d66Min": 32,
+    "d66Max": 32,
+    "environmentName": "Terre vitrifiée",
+    "isRuinInEnvironment": false,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": false
+  },
+  {
+    "d66Min": 33,
+    "d66Max": 35,
+    "environmentName": "Ruines luxuriantes",
+    "isRuinInEnvironment": true,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": true
+  },
+  {
+    "d66Min": 36,
+    "d66Max": 42,
+    "environmentName": "Ruines croulantes",
+    "isRuinInEnvironment": true,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": true
+  },
+  {
+    "d66Min": 43,
+    "d66Max": 51,
+    "environmentName": "Ruines délabrées",
+    "isRuinInEnvironment": true,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": true
+  },
+  {
+    "d66Min": 52,
+    "d66Max": 56,
+    "environmentName": "Ruines intactes",
+    "isRuinInEnvironment": true,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": true
+  },
+  {
+    "d66Min": 61,
+    "d66Max": 64,
+    "environmentName": "Usines abandonnées",
+    "isRuinInEnvironment": true,
+    "isThreatInEnvironment": true,
+    "isArtifactInEnvironment": true
+  },
+  {
+    "d66Min": 65,
+    "d66Max": 66,
+    "environmentName": "Colonie*",
+    "isRuinInEnvironment": false,
+    "isThreatInEnvironment": false,
+    "isArtifactInEnvironment": false
+  }
+]

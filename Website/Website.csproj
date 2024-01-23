@@ -17,6 +17,9 @@
 
   <ItemGroup>
     <Folder Include="Components\Slices\MYZ\" />
-    <Folder Include="Components\Slices\MYZ\SectorsGeneration\Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\Slices\MYZ\SectorsGeneration\Data\environnements.json" />
   </ItemGroup>
 </Project>
