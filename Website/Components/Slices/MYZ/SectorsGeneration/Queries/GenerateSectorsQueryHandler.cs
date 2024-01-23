@@ -25,7 +25,7 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
     private List<Threat> _tableMonsterThreat;
     private List<Threat> _tablePhenomenonThreat;
     private List<Artifact> _tableArtifacts;
-    private List<Trinklet> _tableTrinklets;
+    private List<Trinket> _tableTrinkets;
     
     public async Task<List<Sector>> Handle(GenerateSectorsQuery query, CancellationToken cancellationToken)
     {
@@ -63,14 +63,12 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
         _tableArtifacts = ConvertJsonFile<Artifact>("Data\\artifacts.json");
         _tableAtmospheres = ConvertJsonFile<Atmosphere>("Data\\atmospheres.json");
         _tableEnvironments = ConvertJsonFile<Environment>("Data\\environments.json");
-        _tableIndustrialRuins = ConvertJsonFile<Ruin>("Data\\industrial_ruins.json");
-        _tableNormalRuins = ConvertJsonFile<Ruin>("Data\\normal_ruins.json");
-        
         _tableHumanoidThreat = ConvertJsonFile<Threat>("Data\\humanoid_threat.json");
+        _tableIndustrialRuins = ConvertJsonFile<Ruin>("Data\\industrial_ruins.json");
         _tableMonsterThreat = ConvertJsonFile<Threat>("Data\\monster_threat.json");
+        _tableNormalRuins = ConvertJsonFile<Ruin>("Data\\normal_ruins.json");
         _tablePhenomenonThreat = ConvertJsonFile<Threat>("Data\\phenomenon_threat.json");
-        
-        _tableTrinklets = ConvertJsonFile<Trinklet>("Data\\trinklets.json");
+        _tableTrinkets = ConvertJsonFile<Trinket>("Data\\trinkets.json");
     }
 
     private List<T> ConvertJsonFile<T>(string jsonFile)
@@ -105,7 +103,7 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
 
     private Sector GenerateSector(int threatLevel)
     {
-        throw new NotImplementedException();
+        // 
     }
 }
 
@@ -117,6 +115,6 @@ public enum GenerationMode {
 public record Environment(int D66Min, int D66Max, string EnvironmentName, bool IsRuinInEnvironment, bool IsThreatInEnvironment, bool IsArtifactInEnvironment);
 public record Ruin(int D66Min, int D66Max, string RuinName, string RuinDefinition);
 public record Atmosphere(int D66Min, int D66Max, string AtmosphereName, string AtmosphereDefinition);
-public record Threat();
-public record Artifact(int D666Min, int D666Max, string ArtifactName, string ArtifactPage);
-public record Trinklet(int D666Min, int D666Max, string TrinkletName);
+public record Threat(int D666Min, int D666Max, string ThreatName, int ThreatPage);
+public record Artifact(int D666Min, int D666Max, string ArtifactName, int ArtifactPage);
+public record Trinket(int D666Min, int D666Max, string TrinketName);
