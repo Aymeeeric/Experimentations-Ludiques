@@ -10,16 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build the Docker image
-        working-directory: Website
-        run: docker build . -t  ${{ secrets.DOCKERHUB_USERNAME }}/website:latest
-
-      - name: Log into Docker Hub
-        uses: docker/login-action@v2
+      - name: Heroku
+        uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Push the image to Docker Hub
-        run: docker push  ${{ secrets.DOCKERHUB_USERNAME }}/website:latest
-        
+          email: ${{ secrets.HEROKU_EMAIL }}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          dockerfile_directory: ./Website
+          dockerfile_name: Dockerfile
+          process_type: web
+          
