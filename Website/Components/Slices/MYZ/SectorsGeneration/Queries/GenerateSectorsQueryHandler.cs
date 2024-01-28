@@ -283,16 +283,16 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
 
     private void LoadAllTables()
     {
-        _tableArtifacts = ConvertJsonFile<Artifact>("Data\\artifacts.json");
-        _tableAtmospheres = ConvertJsonFile<Atmosphere>("Data\\atmospheres.json");
-        _tableEnvironments = ConvertJsonFile<Environment>("Data\\environments.json");
-        _tableGangreneLevel = ConvertJsonFile<GangreneLevel>("Data\\gangrene_level.json");
-        _tableHumanoidThreat = ConvertJsonFile<Threat>("Data\\humanoid_threat.json");
-        _tableIndustrialRuins = ConvertJsonFile<Ruin>("Data\\industrial_ruins.json");
-        _tableMonsterThreat = ConvertJsonFile<Threat>("Data\\monster_threat.json");
-        _tableNormalRuins = ConvertJsonFile<Ruin>("Data\\normal_ruins.json");
-        _tablePhenomenonThreat = ConvertJsonFile<Threat>("Data\\phenomenon_threat.json");
-        _tableTrinkets = ConvertJsonFile<Trinket>("Data\\trinkets.json");
+        _tableArtifacts = ConvertJsonFile<Artifact>("Data/artifacts.json");
+        _tableAtmospheres = ConvertJsonFile<Atmosphere>("Data/atmospheres.json");
+        _tableEnvironments = ConvertJsonFile<Environment>("Data/environments.json");
+        _tableGangreneLevel = ConvertJsonFile<GangreneLevel>("Data/gangrene_level.json");
+        _tableHumanoidThreat = ConvertJsonFile<Threat>("Data/humanoid_threat.json");
+        _tableIndustrialRuins = ConvertJsonFile<Ruin>("Data/industrial_ruins.json");
+        _tableMonsterThreat = ConvertJsonFile<Threat>("Data/monster_threat.json");
+        _tableNormalRuins = ConvertJsonFile<Ruin>("Data/normal_ruins.json");
+        _tablePhenomenonThreat = ConvertJsonFile<Threat>("Data/phenomenon_threat.json");
+        _tableTrinkets = ConvertJsonFile<Trinket>("Data/trinkets.json");
     }
 
     private List<T> ConvertJsonFile<T>(string jsonFile)
