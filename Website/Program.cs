@@ -3,6 +3,13 @@ using Microsoft.FluentUI.AspNetCore.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Spécificité pour tourner sur Heroku...
+builder.WebHost.ConfigureKestrel((context, serverOptions) =>
+{
+    var herokuPort = int.Parse(Environment.GetEnvironmentVariable("PORT") ?? throw new Exception("Impossible de trouver le port de lancement."));
+    serverOptions.ListenAnyIP(herokuPort);
+});
+
 // Add services to the container.
 builder.Services
     .AddRazorComponents()
