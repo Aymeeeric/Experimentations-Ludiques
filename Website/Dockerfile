@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
-WORKDIR /Website
+WORKDIR /App
 
 # Copy everything
 COPY . ./
@@ -9,7 +9,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-jammy-chiseled
-WORKDIR /Website
-COPY --from=build-env /Website/out .
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy-chiseled
+WORKDIR /App
+COPY --from=build-env /App/out .
 ENTRYPOINT ["dotnet", "Website.dll"]
