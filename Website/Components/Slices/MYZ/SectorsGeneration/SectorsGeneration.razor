@@ -1,4 +1,5 @@
-﻿@page "/MYZ/SectorsGeneration"
+﻿@page "/"
+
 @using MediatR;
 @using Aymeeeric.Website.Components.Slices.MYZ.SectorsGeneration.Queries
 
@@ -6,163 +7,160 @@
 
 <PageTitle>Aymeeeric.fr - Mutant: Year Zero - Génération de secteurs</PageTitle>
 
-<FluentBodyContent>
-    
-    <h1>
-        Mutant: Year Zero - Génération de secteurs
-    </h1>
-    
-    <FluentStack Orientation="Orientation.Vertical" Width="100%" VerticalGap="50" VerticalAlignment="VerticalAlignment.Center">
+<h1>
+    Mutant: Year Zero - Génération de secteurs
+</h1>
 
-        <FluentGrid Spacing="2" Justify="JustifyContent.Center">
-            
-            <!-- Formulaire -->
-            <FluentGridItem xs="4" xl="2">
-                <FluentCard AreaRestricted="false">
-                    <FluentStack Orientation="Orientation.Vertical">
-                        <FluentNumberField Min="1" Max="10" Label="Nombre de secteurs" @bind-Value=_numberOfSectorsToGenerate></FluentNumberField>
-                        <FluentNumberField Min="0" Max="12" Label="Niveau de menace" @bind-Value=_threatLevel></FluentNumberField>
-                        <FluentRadioGroup Name="numbers" @bind-Value=_randomMode Label="Génération des environnemets">
-                            <FluentRadio Value=GenerationMode.Perlin Disabled="true">Cohérente</FluentRadio>
-                            <FluentRadio Value=GenerationMode.Random>Aléatoire</FluentRadio>
-                        </FluentRadioGroup>
-                        
-                        <FluentTextField Label="Seed" @bind-value="_seed"></FluentTextField>
-                        
-                        <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowClockwise())"
-                                          Appearance="Appearance.Accent"
-                                          OnClick="@GenerateSectors">        
-                                Générer
-                            </FluentButton>
-                    </FluentStack>
-                </FluentCard>
-            </FluentGridItem>
+<FluentStack Orientation="Orientation.Vertical" Width="100%" VerticalGap="50" VerticalAlignment="VerticalAlignment.Center">
 
-            <!-- Texte -->
-            <FluentGridItem xs="8" xl="10">
-                <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
-                    Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
-                    Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
-                    Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
-                    Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
-                </div>
-            </FluentGridItem>
-            
-        </FluentGrid>
-
-        <!-- Résultat -->
-        <FluentGrid Spacing="2" Justify="JustifyContent.Center">
-            
-            @if (_sectors.Any())
-            {
-                @foreach (var sector in _sectors)
-                {
-                    <FluentGridItem xs="12" lg="8" xl="6">
-                        <FluentCard AreaRestricted="false">
-
-                            <!-- Titre (Environnement) -->
-                            <FluentHeader>
-                                <FluentGrid Spacing="2" Justify="JustifyContent.SpaceBetween">
-                                    <FluentGridItem xs="6" xl="8">@sector.Title.Environment</FluentGridItem>
-                                    <FluentGridItem xs="2" xl="2">Menace @sector.Title.ThreatLevel</FluentGridItem>
-                                    <FluentGridItem xs="4" xl="2" Style=@($"background-color:{sector.Title.GangreneColor}")>Gangrène @sector.Title.GangreneLevel</FluentGridItem>
-                                </FluentGrid>
-                            </FluentHeader>
-
-                            <!-- Ruines (si présentes) -->
-                            <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
-                                <FluentGridItem xs="10"><h4>Ruines</h4></FluentGridItem>
-                                <FluentGridItem xs="2">
-                                    <FluentBadge Appearance="Appearance.Accent">
-                                        @BoolToString(sector.Ruin.IsRuinInSector)
-                                    </FluentBadge>
-                                </FluentGridItem>
-                                @if (sector.Ruin.IsRuinInSector)
-                                {
-                                    <FluentGridItem xs="10">
-                                        <b>@sector.Ruin.RuinName (@sector.Ruin.RuinType) :</b> @sector.Ruin.RuinDefinition
-                                    </FluentGridItem>
-                                }
-                            </FluentGrid>
-
-                            <!-- Ambiance (si présente) -->
-                            <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
-                                <FluentGridItem xs="10"><h4>Ambiance</h4></FluentGridItem>
-                                <FluentGridItem xs="2">
-                                    <FluentBadge Appearance="Appearance.Accent">
-                                        @BoolToString(sector.Atmosphere.IsAtmosphereInSector)
-                                    </FluentBadge>
-                                </FluentGridItem>
-                                @if (sector.Atmosphere.IsAtmosphereInSector)
-                                {
-                                    <FluentGridItem xs="10">
-                                        <b>@sector.Atmosphere.AtmosphereName :</b> @sector.Atmosphere.AtmosphereDefinition
-                                    </FluentGridItem>
-                                }
-                            </FluentGrid>
-
-                            <FluentDivider Orientation="Orientation.Horizontal" Style="width: 80%; margin: 2% 0 2% 0"></FluentDivider>
-
-                            <!-- Menace (si présente) -->
-                            <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
-                                <FluentGridItem xs="10"><h4>Menace</h4></FluentGridItem>
-                                <FluentGridItem xs="2">
-                                    <FluentBadge Appearance="Appearance.Accent">
-                                        @BoolToString(sector.Threat.IsThreatInSector)
-                                    </FluentBadge>
-                                </FluentGridItem>
-                                @if (sector.Threat.IsThreatInSector)
-                                {
-                                    <FluentGridItem xs="12">
-                                        <FluentStack Orientation="Orientation.Horizontal">
-                                            <span><b>@sector.Threat.ThreatType :</b> @sector.Threat.ThreatName</span>
-                                            <FluentBadge>@($"P{sector.Threat.ThreatPage}")</FluentBadge>
-                                        </FluentStack>
-                                    </FluentGridItem>
-                                }
-                            </FluentGrid>
-
-                            <FluentDivider Orientation="Orientation.Horizontal" Style="width: 80%; margin: 2% 0 2% 0"></FluentDivider>
-
-                            <!-- Artefact et babioles (si présents) -->
-                            <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
-
-                                <FluentGridItem xs="10"><h4>Artefact</h4></FluentGridItem>
-                                <FluentGridItem xs="2">
-                                    <FluentBadge Appearance="Appearance.Accent">
-                                        @BoolToString(sector.Artifact.IsArtifactInSector)
-                                    </FluentBadge>
-                                </FluentGridItem>
-                                @if (sector.Artifact.IsArtifactInSector)
-                                {
-                                    <FluentGridItem xs="12">
-                                        <FluentStack Orientation="Orientation.Horizontal">
-                                            <span>@sector.Artifact.ArtifactName</span>
-                                            <FluentBadge>@($"P{sector.Artifact.ArtifactPage}")</FluentBadge>
-                                        </FluentStack>
-                                    </FluentGridItem>
-                                }
-
-                                <FluentDivider Orientation="Orientation.Horizontal" Style="width: 20%; margin: 2% 0 2% 0"></FluentDivider>
-
-                                <FluentStack Orientation="Orientation.Horizontal">
-                                    <h5>Babioles :</h5>
-                                    <span>@string.Join(", ", sector.Trinket.TrinketsNames)...</span>
-                                </FluentStack>
-                                
-                            </FluentGrid>
-
-                        </FluentCard>
-                    </FluentGridItem>
-                }
-            }
-        </FluentGrid>
+    <FluentGrid Spacing="2" Justify="JustifyContent.Center">
         
-    </FluentStack>
-</FluentBodyContent>
+        <!-- Formulaire -->
+        <FluentGridItem xs="4" xl="2">
+            <FluentCard AreaRestricted="false">
+                <FluentStack Orientation="Orientation.Vertical">
+                    <FluentNumberField Min="1" Max="10" Label="Nombre de secteurs" @bind-Value=_numberOfSectorsToGenerate></FluentNumberField>
+                    <FluentNumberField Min="0" Max="12" Label="Niveau de menace" @bind-Value=_threatLevel></FluentNumberField>
+                    <FluentRadioGroup Name="numbers" @bind-Value=_randomMode Label="Génération des environnemets">
+                        <FluentRadio Value=GenerationMode.Perlin Disabled="true">Cohérente</FluentRadio>
+                        <FluentRadio Value=GenerationMode.Random>Aléatoire</FluentRadio>
+                    </FluentRadioGroup>
+                    
+                    <FluentTextField Label="Seed" @bind-value="_seed"></FluentTextField>
+                    
+                    <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowClockwise())"
+                                      Appearance="Appearance.Accent"
+                                      OnClick="@GenerateSectors">        
+                            Générer
+                        </FluentButton>
+                </FluentStack>
+            </FluentCard>
+        </FluentGridItem>
+
+        <!-- Texte -->
+        <FluentGridItem xs="8" xl="10">
+            <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
+                Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
+                Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
+                Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
+                Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
+            </div>
+        </FluentGridItem>
+        
+    </FluentGrid>
+
+    <!-- Résultat -->
+    <FluentGrid Spacing="2" Justify="JustifyContent.Center">
+        
+        @if (_sectors.Any())
+        {
+            @foreach (var sector in _sectors)
+            {
+                <FluentGridItem xs="12" lg="8" xl="6">
+                    <FluentCard AreaRestricted="false">
+
+                        <!-- Titre (Environnement) -->
+                        <FluentHeader>
+                            <FluentGrid Spacing="2" Justify="JustifyContent.SpaceBetween">
+                                <FluentGridItem xs="6" xl="8">@sector.Title.Environment</FluentGridItem>
+                                <FluentGridItem xs="2" xl="2">Menace @sector.Title.ThreatLevel</FluentGridItem>
+                                <FluentGridItem xs="4" xl="2" Style=@($"background-color:{sector.Title.GangreneColor}")>Gangrène @sector.Title.GangreneLevel</FluentGridItem>
+                            </FluentGrid>
+                        </FluentHeader>
+
+                        <!-- Ruines (si présentes) -->
+                        <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
+                            <FluentGridItem xs="10"><h4>Ruines</h4></FluentGridItem>
+                            <FluentGridItem xs="2">
+                                <FluentBadge Appearance="Appearance.Accent">
+                                    @BoolToString(sector.Ruin.IsRuinInSector)
+                                </FluentBadge>
+                            </FluentGridItem>
+                            @if (sector.Ruin.IsRuinInSector)
+                            {
+                                <FluentGridItem xs="10">
+                                    <b>@sector.Ruin.RuinName (@sector.Ruin.RuinType) :</b> @sector.Ruin.RuinDefinition
+                                </FluentGridItem>
+                            }
+                        </FluentGrid>
+
+                        <!-- Ambiance (si présente) -->
+                        <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
+                            <FluentGridItem xs="10"><h4>Ambiance</h4></FluentGridItem>
+                            <FluentGridItem xs="2">
+                                <FluentBadge Appearance="Appearance.Accent">
+                                    @BoolToString(sector.Atmosphere.IsAtmosphereInSector)
+                                </FluentBadge>
+                            </FluentGridItem>
+                            @if (sector.Atmosphere.IsAtmosphereInSector)
+                            {
+                                <FluentGridItem xs="10">
+                                    <b>@sector.Atmosphere.AtmosphereName :</b> @sector.Atmosphere.AtmosphereDefinition
+                                </FluentGridItem>
+                            }
+                        </FluentGrid>
+
+                        <FluentDivider Orientation="Orientation.Horizontal" Style="width: 80%; margin: 2% 0 2% 0"></FluentDivider>
+
+                        <!-- Menace (si présente) -->
+                        <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
+                            <FluentGridItem xs="10"><h4>Menace</h4></FluentGridItem>
+                            <FluentGridItem xs="2">
+                                <FluentBadge Appearance="Appearance.Accent">
+                                    @BoolToString(sector.Threat.IsThreatInSector)
+                                </FluentBadge>
+                            </FluentGridItem>
+                            @if (sector.Threat.IsThreatInSector)
+                            {
+                                <FluentGridItem xs="12">
+                                    <FluentStack Orientation="Orientation.Horizontal">
+                                        <span><b>@sector.Threat.ThreatType :</b> @sector.Threat.ThreatName</span>
+                                        <FluentBadge>@($"P{sector.Threat.ThreatPage}")</FluentBadge>
+                                    </FluentStack>
+                                </FluentGridItem>
+                            }
+                        </FluentGrid>
+
+                        <FluentDivider Orientation="Orientation.Horizontal" Style="width: 80%; margin: 2% 0 2% 0"></FluentDivider>
+
+                        <!-- Artefact et babioles (si présents) -->
+                        <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
+
+                            <FluentGridItem xs="10"><h4>Artefact</h4></FluentGridItem>
+                            <FluentGridItem xs="2">
+                                <FluentBadge Appearance="Appearance.Accent">
+                                    @BoolToString(sector.Artifact.IsArtifactInSector)
+                                </FluentBadge>
+                            </FluentGridItem>
+                            @if (sector.Artifact.IsArtifactInSector)
+                            {
+                                <FluentGridItem xs="12">
+                                    <FluentStack Orientation="Orientation.Horizontal">
+                                        <span>@sector.Artifact.ArtifactName</span>
+                                        <FluentBadge>@($"P{sector.Artifact.ArtifactPage}")</FluentBadge>
+                                    </FluentStack>
+                                </FluentGridItem>
+                            }
+
+                            <FluentDivider Orientation="Orientation.Horizontal" Style="width: 20%; margin: 2% 0 2% 0"></FluentDivider>
+
+                            <FluentStack Orientation="Orientation.Horizontal">
+                                <h5>Babioles :</h5>
+                                <span>@string.Join(", ", sector.Trinket.TrinketsNames)...</span>
+                            </FluentStack>
+                            
+                        </FluentGrid>
+
+                    </FluentCard>
+                </FluentGridItem>
+            }
+        }
+    </FluentGrid>
+    
+</FluentStack>
 
 @code {
 
