@@ -7,19 +7,19 @@
 
 <PageTitle>Aymeeeric.fr - Mutant: Year Zero - Génération de secteurs</PageTitle>
 
-<h1>
+<h1 class="ADM_MainTiltle">
     Mutant: Year Zero - Génération de secteurs
 </h1>
 
 <FluentStack Orientation="Orientation.Vertical" Width="100%" VerticalGap="50" VerticalAlignment="VerticalAlignment.Center">
 
+    <!-- Formulaire -->
     <FluentGrid Spacing="2" Justify="JustifyContent.Center">
         
-        <!-- Formulaire -->
-        <FluentGridItem xs="4" xl="2">
+        <FluentGridItem xl="3" lg="4" md="5" xs="12">
             <FluentCard AreaRestricted="false">
                 <FluentStack Orientation="Orientation.Vertical">
-                    <FluentNumberField Min="1" Max="10" Label="Nombre de secteurs" @bind-Value=_numberOfSectorsToGenerate></FluentNumberField>
+                    <FluentNumberField Min="1" Max="12" Label="Nombre de secteurs" @bind-Value=_numberOfSectorsToGenerate  @ref=firstFocusField></FluentNumberField>
                     <FluentNumberField Min="0" Max="12" Label="Niveau de menace" @bind-Value=_threatLevel></FluentNumberField>
                     <FluentRadioGroup Name="numbers" @bind-Value=_randomMode Label="Génération des environnemets">
                         <FluentRadio Value=GenerationMode.Perlin Disabled="true">Cohérente</FluentRadio>
@@ -29,16 +29,15 @@
                     <FluentTextField Label="Seed" @bind-value="_seed"></FluentTextField>
                     
                     <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowClockwise())"
-                                      Appearance="Appearance.Accent"
-                                      OnClick="@GenerateSectors">        
-                            Générer
-                        </FluentButton>
+                                  Appearance="Appearance.Accent"
+                                  OnClick="@GenerateSectors">        
+                        Générer
+                    </FluentButton>
                 </FluentStack>
             </FluentCard>
         </FluentGridItem>
-
-        <!-- Texte -->
-        <FluentGridItem xs="8" xl="10">
+        
+        <FluentGridItem xl="9" lg="8" md="7" xs="12">
             <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
                 Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
@@ -59,23 +58,23 @@
         {
             @foreach (var sector in _sectors)
             {
-                <FluentGridItem xs="12" lg="8" xl="6">
+                <FluentGridItem  xl="4" lg="6" md="12" xs="12">
                     <FluentCard AreaRestricted="false">
 
                         <!-- Titre (Environnement) -->
                         <FluentHeader>
                             <FluentGrid Spacing="2" Justify="JustifyContent.SpaceBetween">
-                                <FluentGridItem xs="6" xl="8">@sector.Title.Environment</FluentGridItem>
-                                <FluentGridItem xs="2" xl="2">Menace @sector.Title.ThreatLevel</FluentGridItem>
-                                <FluentGridItem xs="4" xl="2" Style=@($"background-color:{sector.Title.GangreneColor}")>Gangrène @sector.Title.GangreneLevel</FluentGridItem>
+                                <FluentGridItem xl="6" lg="6" md="5" xs="5">@sector.Title.Environment</FluentGridItem>
+                                <FluentGridItem xl="3" lg="3" md="3" xs="3">Menace @sector.Title.ThreatLevel</FluentGridItem>
+                                <FluentGridItem xl="3" lg="3" md="4" xs="4" Style=@($"background-color:{sector.Title.GangreneColor}")>Gangrène @sector.Title.GangreneLevel</FluentGridItem>
                             </FluentGrid>
                         </FluentHeader>
 
                         <!-- Ruines (si présentes) -->
                         <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
-                            <FluentGridItem xs="10"><h4>Ruines</h4></FluentGridItem>
-                            <FluentGridItem xs="2">
-                                <FluentBadge Appearance="Appearance.Accent">
+                            <FluentGridItem xl="10" lg="10" md="10" xs="10"><h4>Ruines</h4></FluentGridItem>
+                            <FluentGridItem xl="2" lg="2" md="2" xs="2">
+                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Ruin.IsRuinInSector) Width="60%">
                                     @BoolToString(sector.Ruin.IsRuinInSector)
                                 </FluentBadge>
                             </FluentGridItem>
@@ -91,7 +90,7 @@
                         <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
                             <FluentGridItem xs="10"><h4>Ambiance</h4></FluentGridItem>
                             <FluentGridItem xs="2">
-                                <FluentBadge Appearance="Appearance.Accent">
+                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Atmosphere.IsAtmosphereInSector) Width="60%">
                                     @BoolToString(sector.Atmosphere.IsAtmosphereInSector)
                                 </FluentBadge>
                             </FluentGridItem>
@@ -109,7 +108,7 @@
                         <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
                             <FluentGridItem xs="10"><h4>Menace</h4></FluentGridItem>
                             <FluentGridItem xs="2">
-                                <FluentBadge Appearance="Appearance.Accent">
+                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Threat.IsThreatInSector) Width="60%">
                                     @BoolToString(sector.Threat.IsThreatInSector)
                                 </FluentBadge>
                             </FluentGridItem>
@@ -131,7 +130,7 @@
 
                             <FluentGridItem xs="10"><h4>Artefact</h4></FluentGridItem>
                             <FluentGridItem xs="2">
-                                <FluentBadge Appearance="Appearance.Accent">
+                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Artifact.IsArtifactInSector) Width="60%">
                                     @BoolToString(sector.Artifact.IsArtifactInSector)
                                 </FluentBadge>
                             </FluentGridItem>
@@ -162,10 +161,29 @@
     
 </FluentStack>
 
+@* IHM *@
+@code
+{
+    FluentNumberField<int> firstFocusField;
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if(firstRender)
+        {
+            firstFocusField!.FocusAsync();
+        }
+    }
+
+    private Appearance GetBadgeAppearance(bool isSomethingInbBadge)
+    {
+        return isSomethingInbBadge ? Appearance.Accent : Appearance.Neutral;
+    }
+}
+
+@* Query *@
 @code {
 
     GenerationMode _randomMode = GenerationMode.Random;
-    int _numberOfSectorsToGenerate = 5;
+    int _numberOfSectorsToGenerate = 6;
     int _threatLevel = 4;
     string _seed = string.Empty; 
     
@@ -184,6 +202,7 @@
 
 }
 
+@* Helpers *@
 @code
 {
     string BoolToString(bool boolToConvert)

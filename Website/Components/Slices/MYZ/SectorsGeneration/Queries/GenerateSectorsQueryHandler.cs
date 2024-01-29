@@ -35,8 +35,8 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
         var threatLevel = query.ThreatLevel;
         var generationMode = query.GenerationMode; // Non implémentée.
         
-        if(numberOfSectorsToGenerate < 1 ||numberOfSectorsToGenerate > 10)
-            throw new Exception("Le nombre de secteurs à générer doit être compris entre 1 et 10.");
+        if(numberOfSectorsToGenerate < 1 ||numberOfSectorsToGenerate > 12)
+            throw new Exception("Le nombre de secteurs à générer doit être compris entre 1 et 12.");
         if(threatLevel < 0 ||threatLevel > 12)
             throw new Exception("Le niveau de menace doit être compris entre 1 et 12.");
 
@@ -287,11 +287,11 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
         _tableAtmospheres = ConvertJsonFile<Atmosphere>("Data/atmospheres.json");
         _tableEnvironments = ConvertJsonFile<Environment>("Data/environments.json");
         _tableGangreneLevel = ConvertJsonFile<GangreneLevel>("Data/gangrene_level.json");
-        _tableHumanoidThreat = ConvertJsonFile<Threat>("Data/humanoid_threat.json");
-        _tableIndustrialRuins = ConvertJsonFile<Ruin>("Data/industrial_ruins.json");
-        _tableMonsterThreat = ConvertJsonFile<Threat>("Data/monster_threat.json");
-        _tableNormalRuins = ConvertJsonFile<Ruin>("Data/normal_ruins.json");
-        _tablePhenomenonThreat = ConvertJsonFile<Threat>("Data/phenomenon_threat.json");
+        _tableIndustrialRuins = ConvertJsonFile<Ruin>("Data/ruins_industrial.json");
+        _tableNormalRuins = ConvertJsonFile<Ruin>("Data/ruins_normal.json");
+        _tableHumanoidThreat = ConvertJsonFile<Threat>("Data/threats_humanoid.json");
+        _tableMonsterThreat = ConvertJsonFile<Threat>("Data/threats_monster.json");
+        _tablePhenomenonThreat = ConvertJsonFile<Threat>("Data/threats_phenomenon.json");
         _tableTrinkets = ConvertJsonFile<Trinket>("Data/trinkets.json");
     }
 
