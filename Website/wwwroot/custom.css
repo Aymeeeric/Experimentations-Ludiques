@@ -1,0 +1,13 @@
+﻿.ADM_MainTiltle {
+    padding: 10px 0 10px 0;
+}
+
+.ADM_Card_Divider {
+    width: 80%; 
+    margin: 2% 0 2% 0;
+}
+
+.ADM_Card_Divider_Small {
+    width: 20%; 
+    margin: 2% 0 2% 0
+}

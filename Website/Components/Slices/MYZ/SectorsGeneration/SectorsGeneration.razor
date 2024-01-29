@@ -102,7 +102,7 @@
                             }
                         </FluentGrid>
 
-                        <FluentDivider Orientation="Orientation.Horizontal" Style="width: 80%; margin: 2% 0 2% 0"></FluentDivider>
+                        <FluentDivider Orientation="Orientation.Horizontal" Class="ADM_Card_Divider"></FluentDivider>
 
                         <!-- Menace (si présente) -->
                         <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
@@ -123,7 +123,7 @@
                             }
                         </FluentGrid>
 
-                        <FluentDivider Orientation="Orientation.Horizontal" Style="width: 80%; margin: 2% 0 2% 0"></FluentDivider>
+                        <FluentDivider Orientation="Orientation.Horizontal" Class="ADM_Card_Divider"></FluentDivider>
 
                         <!-- Artefact et babioles (si présents) -->
                         <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
@@ -144,12 +144,14 @@
                                 </FluentGridItem>
                             }
 
-                            <FluentDivider Orientation="Orientation.Horizontal" Style="width: 20%; margin: 2% 0 2% 0"></FluentDivider>
+                            <FluentGridItem xs="12">
+                                <FluentDivider Orientation="Orientation.Horizontal" Class="ADM_Card_Divider_Small"></FluentDivider>
+                            </FluentGridItem>
 
-                            <FluentStack Orientation="Orientation.Horizontal">
-                                <h5>Babioles :</h5>
+                            <FluentGridItem xs="12">
+                                <b>Babioles :</b>
                                 <span>@string.Join(", ", sector.Trinket.TrinketsNames)...</span>
-                            </FluentStack>
+                            </FluentGridItem>
                             
                         </FluentGrid>
 
