@@ -260,7 +260,7 @@ public class GenerateSectorsQueryHandler: IRequestHandler<GenerateSectorsQuery, 
         switch (level)
         {
             case 0 :
-                return "yellow";
+                return "green";
             case 1 :
                 return "orange";
             case 2 :

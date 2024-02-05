@@ -38,15 +38,29 @@
         </FluentGridItem>
         
         <FluentGridItem xl="9" lg="8" md="7" xs="12">
-            <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
-                Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
-                Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lorem lacus.
-                Ut id leo non enim feugiat ultrices. Proin vulputate volutpat urna nec iaculis.
-                Integer dui lacus, fermentum sit amet aliquet in, scelerisque vitae dui.
-            </div>
+            <FluentStack Orientation="Orientation.Vertical">
+                 <div>
+                    <h3>Introduction à l'outil</h3>  
+                     <span>
+                         Cette apllication a pour objectif de faciliter le travail de la MJ dans le cadre de sa préparation de séances du jeu de rôle <i>Mutant: Year Zero</i>.<br/>
+                         Elle vise à automatiser au maximum les étapes de création de la Zone, explicitées au <FluentBadge>chapitre 11</FluentBadge> du livre de base...
+                     </span>
+                 </div>
+                <div>
+                    <span>
+                        <b>Attention :</b> cette application ne vise pas à se substituer au livre de base (disponible sur le site <a href="https://www.arkhane-asylum.fr/" target="_blank">d'Arkhane Asylum</a>). Elle vise bien, comme expliqué précédement, à faciliter le travail de la MJ.<br/>
+                        Dans ce cadre, elle reprend certains éléments du livre de base (<i>ruines</i>, <i>ambiances</i> etc.) pour fluidifier les descriptions - et donc l'experience de jeu à la table.<br/>
+                        Cela étant dit, le livre de base reste nécessaire pour obtenir le détail d'autres éléments de jeu (comme les <i>menaces</i> ou <i>artefacts</i>), et l'application référence simplement les <FluentBadge>pages</FluentBadge> exactes (de l'édition française) ou trouver ces éléments.
+                    </span>
+                </div>
+                <div>
+                    <h3>Règles de génération</h3>                
+                    <span>
+                        Dans ce cadre, elle reprend certains éléments du livre de base (<i>ruines</i> et <i>ambiances</i> etc.) pour fluidifier les descriptions - et donc l'experience de jeu à la table.<br/>
+                        Cela étant dit, le livre de base reste necessaire pour obtenir le détail d'autres éléments de jeu (comme les <i>menaces</i> ou <i>artefacts</i>), et l'application référence simplement les <FluentBadge>pages</FluentBadge> exactes (de l'édition française) ou trouver ces éléments.
+                    </span>
+                </div>
+            </FluentStack>
         </FluentGridItem>
         
     </FluentGrid>
