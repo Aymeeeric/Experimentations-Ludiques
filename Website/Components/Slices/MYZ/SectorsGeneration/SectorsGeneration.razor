@@ -14,7 +14,7 @@
 <FluentStack Orientation="Orientation.Vertical" Width="100%" VerticalGap="50" VerticalAlignment="VerticalAlignment.Center">
 
     <!-- Formulaire -->
-    <FluentGrid Spacing="2" Justify="JustifyContent.Center">
+    <FluentGrid Spacing="2" Justify="JustifyContent.FlexStart">
         
         <FluentGridItem xl="3" lg="4" md="5" xs="12">
             <FluentCard AreaRestricted="false">
@@ -37,27 +37,23 @@
             </FluentCard>
         </FluentGridItem>
         
-        <FluentGridItem xl="9" lg="8" md="7" xs="12">
+        <FluentGridItem xl="4" lg="5" md="6" xs="12">
             <FluentStack Orientation="Orientation.Vertical">
-                 <div>
+                <div class="ADM_Text_Justified">
                     <h3>Introduction à l'outil</h3>  
-                     <span>
-                         Cette apllication a pour objectif de faciliter le travail de la MJ dans le cadre de sa préparation de séances du jeu de rôle <i>Mutant: Year Zero</i>.<br/>
-                         Elle vise à automatiser au maximum les étapes de création de la Zone, explicitées au <FluentBadge>chapitre 11</FluentBadge> du livre de base...
-                     </span>
-                 </div>
-                <div>
-                    <span>
-                        <b>Attention :</b> cette application ne vise pas à se substituer au livre de base (disponible sur le site <a href="https://www.arkhane-asylum.fr/" target="_blank">d'Arkhane Asylum</a>). Elle vise bien, comme expliqué précédement, à faciliter le travail de la MJ.<br/>
-                        Dans ce cadre, elle reprend certains éléments du livre de base (<i>ruines</i>, <i>ambiances</i> etc.) pour fluidifier les descriptions - et donc l'experience de jeu à la table.<br/>
-                        Cela étant dit, le livre de base reste nécessaire pour obtenir le détail d'autres éléments de jeu (comme les <i>menaces</i> ou <i>artefacts</i>), et l'application référence simplement les <FluentBadge>pages</FluentBadge> exactes (de l'édition française) ou trouver ces éléments.
-                    </span>
+                    <p>Cette apllication a pour objectif de faciliter le travail de la MJ dans le cadre de sa préparation de séances du jeu de rôle <i>Mutant: Year Zero</i>.</p>
+                    <p>Elle vise à automatiser au maximum les étapes de création de la Zone, explicitées au <FluentBadge>chapitre 11</FluentBadge> du livre de base...</p>
+                    <h3>Remarque importante</h3> 
+                    <p>Cette application ne vise pas à se substituer au livre de base (disponible sur le site <a href="https://www.arkhane-asylum.fr/" target="_blank">d'Arkhane Asylum</a>) : elle vise uniquement à faciliter le travail de la MJ.</p>
+                    <p>
+                        En vue de cet objectif, elle reprend certains éléments du livre de base (<i>ruines</i>, <i>ambiances</i> etc.) pour fluidifier les descriptions - 
+                        et donc l'experience de jeu à la table - mais le livre de base reste nécessaire pour obtenir le détail des éléments importants du jeu (comme les <i>menaces</i> ou <i>artefacts</i>) :
+                        pour ces éléments, l'application référence simplement les <FluentBadge>pages</FluentBadge> exactes (de l'édition française) ou les trouver.
+                    </p>
                 </div>
-                <div>
-                    <h3>Règles de génération</h3>                
-                    <span>
-                        TBD
-                    </span>
+                <div class="ADM_Text_Justified">
+                    <p>Vous souhaitant, à toutes et tous, une excellente partie !</p>
+                    <p><i>Aymeeeric</i></p>
                 </div>
             </FluentStack>
         </FluentGridItem>
@@ -71,45 +67,52 @@
         {
             @foreach (var sector in _sectors)
             {
-                <FluentGridItem  xl="4" lg="6" md="12" xs="12">
-                    <FluentCard AreaRestricted="false">
+                <FluentGridItem xl="4" lg="6" md="12" xs="12" >
+                    
+                    <FluentCard>
 
                         <!-- Titre (Environnement) -->
-                        <FluentHeader>
-                            <FluentGrid Spacing="2" Justify="JustifyContent.SpaceBetween">
-                                <FluentGridItem xl="6" lg="6" md="5" xs="5">@sector.Title.Environment</FluentGridItem>
-                                <FluentGridItem xl="3" lg="3" md="3" xs="3">Menace @sector.Title.ThreatLevel</FluentGridItem>
-                                <FluentGridItem xl="3" lg="3" md="4" xs="4" Style=@($"background-color:{sector.Title.GangreneColor}")>Gangrène @sector.Title.GangreneLevel</FluentGridItem>
-                            </FluentGrid>
-                        </FluentHeader>
+                        <FluentGrid Justify="JustifyContent.FlexStart" Class="ADM_Card_Header">   
+                            <FluentGridItem xl="10" lg="10" md="10" xs="8">
+                                <h4>@sector.Title.Environment</h4>
+                            </FluentGridItem>
+                            <FluentGridItem xl="2" lg="2" md="2" xs="4">
+                                <FluentBadge Circular=false Fill="GangreneColor" BackgroundColor="@sector.Title.GangreneColor" Color="white"
+                                             Class="ADM_Card_Header_Badge">
+                                    <b>Gangrène @sector.Title.GangreneLevel</b>
+                                </FluentBadge>
+                            </FluentGridItem>
+                        </FluentGrid>
 
                         <!-- Ruines (si présentes) -->
-                        <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
-                            <FluentGridItem xl="10" lg="10" md="10" xs="10"><h4>Ruines</h4></FluentGridItem>
+                        <FluentGrid Spacing="0" Justify="JustifyContent.FlexStart" Class="ADM_Card_FluentGrid_With_More_Margin_Bottom">
                             <FluentGridItem xl="2" lg="2" md="2" xs="2">
-                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Ruin.IsRuinInSector) Width="60%">
+                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Ruin.IsRuinInSector) Class="ADM_Card_Badge">
                                     @BoolToString(sector.Ruin.IsRuinInSector)
                                 </FluentBadge>
                             </FluentGridItem>
+                            <FluentGridItem xl="10" lg="10" md="10" xs="10">
+                                <h5>Présence de ruines</h5>
+                            </FluentGridItem>
                             @if (sector.Ruin.IsRuinInSector)
                             {
-                                <FluentGridItem xs="10">
+                                <FluentGridItem xs="10" Class="ADM_Text_Justified">
                                     <b>@sector.Ruin.RuinName (@sector.Ruin.RuinType) :</b> @sector.Ruin.RuinDefinition
                                 </FluentGridItem>
                             }
                         </FluentGrid>
 
                         <!-- Ambiance (si présente) -->
-                        <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
-                            <FluentGridItem xs="10"><h4>Ambiance</h4></FluentGridItem>
+                        <FluentGrid Spacing="0" Justify="JustifyContent.FlexStart"  Class="ADM_Card_FluentGrid">
                             <FluentGridItem xs="2">
-                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Atmosphere.IsAtmosphereInSector) Width="60%">
+                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Atmosphere.IsAtmosphereInSector) Class="ADM_Card_Badge">
                                     @BoolToString(sector.Atmosphere.IsAtmosphereInSector)
                                 </FluentBadge>
                             </FluentGridItem>
+                            <FluentGridItem xs="10"><h5>Élément d'ambiance</h5></FluentGridItem>
                             @if (sector.Atmosphere.IsAtmosphereInSector)
                             {
-                                <FluentGridItem xs="10">
+                                <FluentGridItem xs="10" Class="ADM_Text_Justified">
                                     <b>@sector.Atmosphere.AtmosphereName :</b> @sector.Atmosphere.AtmosphereDefinition
                                 </FluentGridItem>
                             }
@@ -118,13 +121,13 @@
                         <FluentDivider Orientation="Orientation.Horizontal" Class="ADM_Card_Divider"></FluentDivider>
 
                         <!-- Menace (si présente) -->
-                        <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
-                            <FluentGridItem xs="10"><h4>Menace</h4></FluentGridItem>
+                        <FluentGrid Spacing="0" Justify="JustifyContent.FlexStart"  Class="ADM_Card_FluentGrid">
                             <FluentGridItem xs="2">
-                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Threat.IsThreatInSector) Width="60%">
+                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Threat.IsThreatInSector) Class="ADM_Card_Badge">
                                     @BoolToString(sector.Threat.IsThreatInSector)
                                 </FluentBadge>
                             </FluentGridItem>
+                            <FluentGridItem xs="10"><h5>Menace</h5></FluentGridItem>
                             @if (sector.Threat.IsThreatInSector)
                             {
                                 <FluentGridItem xs="12">
@@ -139,14 +142,13 @@
                         <FluentDivider Orientation="Orientation.Horizontal" Class="ADM_Card_Divider"></FluentDivider>
 
                         <!-- Artefact et babioles (si présents) -->
-                        <FluentGrid Spacing="0" Justify="JustifyContent.SpaceBetween" Style="margin: 2%">
-
-                            <FluentGridItem xs="10"><h4>Artefact</h4></FluentGridItem>
+                        <FluentGrid Spacing="0" Justify="JustifyContent.FlexStart"  Class="ADM_Card_FluentGrid">
                             <FluentGridItem xs="2">
-                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Artifact.IsArtifactInSector) Width="60%">
+                                <FluentBadge Appearance=@GetBadgeAppearance(sector.Artifact.IsArtifactInSector) Class="ADM_Card_Badge">
                                     @BoolToString(sector.Artifact.IsArtifactInSector)
                                 </FluentBadge>
                             </FluentGridItem>
+                            <FluentGridItem xs="10"><h5>Artefact</h5></FluentGridItem>
                             @if (sector.Artifact.IsArtifactInSector)
                             {
                                 <FluentGridItem xs="12">
@@ -165,7 +167,7 @@
                                 <b>Babioles :</b>
                                 <span>@string.Join(", ", sector.Trinket.TrinketsNames)...</span>
                             </FluentGridItem>
-                            
+
                         </FluentGrid>
 
                     </FluentCard>
@@ -187,7 +189,7 @@
             firstFocusField!.FocusAsync();
         }
     }
-
+    
     private Appearance GetBadgeAppearance(bool isSomethingInbBadge)
     {
         return isSomethingInbBadge ? Appearance.Accent : Appearance.Neutral;

@@ -1,13 +1,42 @@
-﻿.ADM_MainTiltle {
+﻿
+.ADM_MainTiltle {
     padding: 10px 0 10px 0;
 }
 
+.ADM_Card_Header {
+    background-color: var(--accent-fill-rest);
+    color: var(--fill-color);
+
+    margin: -3% -4% 4% -3%;
+    padding: 2% 3% 1% 3%;
+}
+
+.ADM_Card_Header_Badge {
+    width: 95%;
+}
+
+.ADM_Card_FluentGrid {
+    margin: 2%;
+}
+
+.ADM_Card_FluentGrid_With_More_Margin_Bottom { 
+    margin: 2% 2% 4% 2%;
+}
+
+.ADM_Card_Badge {
+    width: 70%;
+}
+
 .ADM_Card_Divider {
-    width: 80%; 
-    margin: 2% 0 2% 0;
+    width: 90%; 
+    margin: 3% 0 3% 0;
 }
 
 .ADM_Card_Divider_Small {
-    width: 20%; 
-    margin: 2% 0 2% 0
+    width: 30%; 
+    margin: 3% 0 3% 0
+}
+
+.ADM_Text_Justified {
+    text-align: justify;
 }
